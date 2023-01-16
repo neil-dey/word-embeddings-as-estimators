@@ -1,0 +1,131 @@
+
+#!/bin/tcsh
+#BSUB -J PMI_calc[1-20]
+#BSUB -x
+#BSUB -n 2
+#BSUB -W 3:00
+#BSUB -R "rusage[mem=16GB]"
+#BSUB -R "span[hosts=1]"
+#BSUB -M 16GB!
+
+conda activate Python_Environment
+python PMI_calc.py $LSB_JOBINDEX
+
+conda deactivate
+
+# ---------------------------------------------
+
+#!/bin/tcsh
+#BSUB -J PMI_est[1-60]
+#BSUB -x
+#BSUB -n 2
+#BSUB -W 3:00
+#BSUB -R "rusage[mem=16GB]"
+#BSUB -R "span[hosts=1]"
+#BSUB -M 16GB!
+
+conda activate Python_Environment
+python PMI_est.py $LSB_JOBINDEX
+
+conda deactivate
+
+# ---------------------------------------------
+
+#!/bin/tcsh
+#BSUB -J Calc_EM[1-60]
+#BSUB -x
+#BSUB -n 2
+#BSUB -W 5:00
+#BSUB -R "rusage[mem=16GB]"
+#BSUB -R "span[hosts=1]"
+#BSUB -M 16GB!
+
+conda activate Python_Environment
+python Calc_EM.py $LSB_JOBINDEX
+
+conda deactivate
+
+# ---------------------------------------------
+
+#!/bin/tcsh
+#BSUB -J Calc_DD[1-60]
+#BSUB -x
+#BSUB -n 2
+#BSUB -W 5:00
+#BSUB -R "rusage[mem=16GB]"
+#BSUB -R "span[hosts=1]"
+#BSUB -M 16GB!
+
+conda activate Python_Environment
+python Calc_DD.py $LSB_JOBINDEX
+
+conda deactivate
+
+# ---------------------------------------------
+
+#!/bin/tcsh
+#BSUB -J calc_W2V[1-60]
+#BSUB -x
+#BSUB -n 2
+#BSUB -W 5:00
+#BSUB -R "rusage[mem=16GB]"
+#BSUB -R "span[hosts=1]"
+#BSUB -M 16GB!
+
+conda activate Python_Environment
+python Calc_W2V.py $LSB_JOBINDEX
+
+conda deactivate
+
+# ---------------------------------------------
+
+#!/bin/tcsh
+#BSUB -J emb_mat[1-60]
+#BSUB -x
+#BSUB -n 2
+#BSUB -W 5:00
+#BSUB -R "rusage[mem=16GB]"
+#BSUB -R "span[hosts=1]"
+#BSUB -M 16GB!
+
+conda activate Python_Environment
+python Embed_Matrices.py $LSB_JOBINDEX
+
+conda deactivate
+
+#!/bin/tcsh
+#BSUB -J calc_LSTM[1-300]
+#BSUB -x
+#BSUB -n 2
+#BSUB -W 2:00
+#BSUB -R "rusage[mem=16GB]"
+#BSUB -R "span[hosts=1]"
+#BSUB -M 16GB!
+
+conda activate Python_Environment
+python3 Calc_LSTM.py $LSB_JOBINDEX
+
+conda deactivate
+
+# ---------------------------------------------
+
+#!/bin/tcsh
+#BSUB -J Results[1]
+#BSUB -x
+#BSUB -n 2
+#BSUB -W 0:30
+#BSUB -R "rusage[mem=4GB]"
+#BSUB -R "span[hosts=1]"
+#BSUB -M 4GB!
+
+conda activate Python_Environment
+python Avg_Results.py $LSB_JOBINDEX
+
+conda deactivate
+
+# ---------------------------------------------
+
+
+
+
+
